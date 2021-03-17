@@ -1,0 +1,8 @@
+<resources>
+    <string name="dashboard">Dashboard</string>
+    <string name="failure">failure</string>
+    <string name="save">Save</string>
+    <string name="loading"></string>
+    <string name="search_for_articles">Search for articles...</string>
+    <string name="short_query">Your search query is very short...</string>
+</resources>

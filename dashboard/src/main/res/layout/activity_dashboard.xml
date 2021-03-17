@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="seersolutions.dashboard.ui.DashboardViewModel" />
+
+    </data>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <include
+
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:id="@+id/include_toolbar"
+            layout="@layout/rtoolbar" />
+
+
+        <LinearLayout
+            android:layout_marginLeft="@dimen/spacing_middle"
+            android:layout_marginRight="@dimen/spacing_middle"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:weightSum="9">
+
+
+
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swipe_container"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+
+                android:layout_weight="3.5"
+                app:onRefreshListener="@{() -> viewModel.getStoriesRemoteDataSource()}"
+                app:refreshing="@{safeUnbox(viewModel.isStoryLoading)}">
+
+                <LinearLayout
+                    android:layout_marginStart="@dimen/spacing_normal"
+                    android:layout_marginEnd="@dimen/spacing_normal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Top Stories"
+                        android:textStyle="bold"
+                        android:textColor="@color/grey_90"
+                        android:textSize="20sp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/stories_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:background="@android:color/transparent"
+                        android:nestedScrollingEnabled="true" />
+                </LinearLayout>
+
+
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="5.5">
+            <include
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/search_bar"
+                layout="@layout/search_view" />
+                <TextView
+                    android:id="@+id/error_msg"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:visibility="@{safeUnbox(viewModel.hasError) ? View.VISIBLE : View.GONE}"
+                    android:textStyle="bold"
+                    android:textColor="@color/grey_90"
+                    android:textSize="20sp" />
+
+                <ProgressBar
+                    android:visibility="@{safeUnbox(viewModel.isArticleLoading()) ? View.VISIBLE : View.GONE}"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="40dp"
+                    android:id="@+id/progress_bar"
+                    style="@style/Widget.AppCompat.ProgressBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    android:indeterminateTint="@color/colorAccent"
+                    android:gravity="center" />
+                <androidx.recyclerview.widget.RecyclerView
+
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:nestedScrollingEnabled="true"
+                    android:id="@+id/articles_view"
+                    android:visibility="@{safeUnbox(viewModel.isArticleLoading()) ? View.GONE : View.VISIBLE}"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent" />
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</layout>

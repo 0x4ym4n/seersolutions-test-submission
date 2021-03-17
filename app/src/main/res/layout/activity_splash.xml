@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+
+    tools:context=".SplashScreen">
+
+
+    <TextView
+        android:layout_below="@id/logo"
+        android:layout_marginTop="@dimen/_40sdp"
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/seersolutions_test"
+        android:textSize="20sp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/logo"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_100sdp"
+        android:layout_gravity="center"
+        android:elevation="16dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/seer_logo" />
+    <ProgressBar
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp"
+        android:id="@+id/progress_bar"
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/colorAccent"
+        android:gravity="center" />
+
+    <TextView
+        android:layout_marginBottom="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/submitted_by_ayman_alshaikh"
+        android:textSize="12sp"
+        android:textStyle="italic"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true" />
+</RelativeLayout>

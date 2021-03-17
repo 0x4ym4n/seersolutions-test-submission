@@ -1,0 +1,5 @@
+rootProject.name='SeerSolutions-Ayman-Test'
+include ':app'
+include ':base'
+include ':login'
+include ':dashboard'
